@@ -22,7 +22,6 @@ Route::group(['namespace' => 'Api'], function(){
 	Route::get('/email/resend', 'VerificationController@resend')->name('verification.resend');
 	Route::get('/email/verify/{id}/{hash}', 'VerificationController@verify')->name('verification.verify');
 
-	Route::get('/user', 'UserController@users');
 	Route::group(['middleware' => 'auth:api'], function(){
 		
 		Route::get('/logout', 'AuthController@logout');
@@ -36,7 +35,6 @@ Route::group(['namespace' => 'Api'], function(){
 			Route::patch('/assign_order/{courier_id}/{order_id}', 'AdminController@assign_order');
 			Route::patch('/update_status/{order_id}', 'OrderController@update_status');		
 		});
-
 	});
 	Route::group(['middleware' => 'auth:courier', 'prefix' => 'courier'], function(){
 		
