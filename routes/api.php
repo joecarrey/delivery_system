@@ -13,21 +13,35 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
+Route::group(['namespace' => 'Api'], function(){
+	Route::post('/register', 'AuthController@register'); // register
+	Route::post('/register_courier', 'AuthController@register_courier'); // register
+	Route::post('/login', 'AuthController@login');	// login
+	Route::post('/login_courier', 'AuthController@login_courier'); // register
 
-Route::post('/register', 'Api\AuthController@register'); // register
-Route::post('/register_courier', 'Api\AuthController@register_courier'); // register
-Route::post('/login', 'Api\AuthController@login');	// login
-Route::post('/login_courier', 'Api\AuthController@login_courier'); // register
+	Route::get('/email/resend', 'VerificationController@resend')->name('verification.resend');
+	Route::get('/email/verify/{id}/{hash}', 'VerificationController@verify')->name('verification.verify');
 
-Route::get('/email/resend', 'Api\VerificationController@resend')->name('verification.resend');
-Route::get('/email/verify/{id}/{hash}', 'Api\VerificationController@verify')->name('verification.verify');
+	Route::get('/user', 'UserController@users');
+	Route::group(['middleware' => 'auth:api'], function(){
+		
+		Route::get('/logout', 'AuthController@logout');
+		
+		Route::post('/order', 'OrderController@store');
 
-Route::get('/user', 'Api\UserController@users');
-Route::group(['middleware' => 'auth:api'], function(){
-	Route::get('/logout', 'Api\AuthController@logout');
-	
-	Route::post('/order', 'Api\OrderController@store');
-});
+		Route::group(['middleware' => 'admin', 'prefix' => 'admin'], function(){
+			Route::get('/orders', 'AdminController@get_orders');	
+			Route::get('/couriers', 'AdminController@get_couriers');
+
+			Route::patch('/assign_order/{courier_id}/{order_id}', 'AdminController@assign_order');
+			Route::patch('/update_status/{order_id}', 'OrderController@update_status');		
+		});
+
+	});
+	Route::group(['middleware' => 'auth:courier', 'prefix' => 'courier'], function(){
+		
+		Route::get('/orders', 'CourierController@get_orders');
+
+		Route::patch('/update_status/{order_id}', 'OrderController@update_status');		
+	});	
+});	

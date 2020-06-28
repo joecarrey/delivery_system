@@ -45,8 +45,24 @@ class OrderController extends Controller
 	    $order->message = $request->message;
         $order->file = $fileNameToStore; 
     	$order->user()->associate(Auth::user());
+    	$order->status = Order::STATUS_REQUESTED;
         $order->save();
 
     	return response()->json($order, 201);
+    }
+
+    public function update_status(Request $request, $order_id)
+    {
+    	$order = Order::findOrFail($order_id);
+    	$order->status = $request->status;
+    	$order->save();
+
+    	return response()->json($order, 200);
+    }
+
+    public function order_info($order_id)
+    {
+    	$order = Order::findOrFail($order_id);
+		return response()->json($order, 200);
     }
 }

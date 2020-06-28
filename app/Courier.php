@@ -65,4 +65,11 @@ class Courier extends Eloquent implements AuthenticatableContract, JWTSubject
     {
         $this->attributes['password'] = Hash::make($password);
     }
+
+    /**
+     * Relations
+     */
+    public function orders(){
+        return $this->hasMany(Order::class);
+    }
 }
