@@ -6,6 +6,8 @@ use App\Http\Controllers\Api\Controller;
 use Illuminate\Http\Request;
 use Validator;
 use App\User;
+use App\Courier;
+use Auth;
 // use App\Role;
 
 class AuthController extends Controller
@@ -24,7 +26,7 @@ class AuthController extends Controller
 
     	$user = User::where('email', $request->email)->first();
 
-    	if(!$token = auth()->attempt($creds))
+    	if(!$token = Auth::guard('api')->attempt($creds))
     	{
     		return response()->json(['error' => 'Unauthorized', 401]);
     	}
@@ -48,6 +50,45 @@ class AuthController extends Controller
     	$user->roles()->attach('5ef68a5128350000b6004994'); 
 
     	return response()->json($user, 201);
+    }
+///////////////////////////////////////////////////////////////////////////////////////
+    public function login_courier(Request $request)
+    {
+    	$creds = $request->only(['email', 'password']);
+    	
+    	$validator = Validator::make($request->all(), [
+    		'email' => 'required|email',
+    		'password' => 'required|string|min:8',
+    	]);
+    	if($validator->fails()){
+    		return response()->json($validator->errors(), 401);
+    	}
+
+    	$courier = Courier::where('email', $request->email)->first();
+
+    	if(!$token = Auth::guard('courier')->attempt($creds))
+    	{
+    		return response()->json(['error' => 'Unauthorized', 401]);
+    	}
+
+    	$courier['token'] = $token;
+   		return response()->json($courier, 200);
+    }
+
+    public function register_courier(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+    		'name' => 'required|string|max:255|min:3',
+    		'email' => 'required|email|max:255',
+    		'password' => 'required|string|min:8',
+    	]);
+    	if($validator->fails()){
+    		return response()->json($validator->errors(), 401);
+    	}
+
+    	$courier = Courier::create($request->all()); 
+
+    	return response()->json($courier, 201);
     }
 
     public function logout()

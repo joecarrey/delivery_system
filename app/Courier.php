@@ -13,15 +13,15 @@ use Hash;
 
 use Tymon\JWTAuth\Contracts\JWTSubject;
 
-class User extends Eloquent implements AuthenticatableContract, JWTSubject
+class Courier extends Eloquent implements AuthenticatableContract, JWTSubject
 {
-    use AuthenticatableTrait;
+	use AuthenticatableTrait;
     use Notifiable;
 
     protected $connection = 'mongodb';
-    protected $collection = 'users';
+    protected $collection = 'couriers';
 
-    // protected $guard = 'user';
+    protected $guard = 'courier';
     /**
      * The attributes that are mass assignable.
      *
@@ -49,7 +49,7 @@ class User extends Eloquent implements AuthenticatableContract, JWTSubject
         'email_verified_at' => 'datetime',
     ];
 
-    public function getJWTIdentifier()
+	public function getJWTIdentifier()
     {
         return $this->getKey();
     }
@@ -58,23 +58,11 @@ class User extends Eloquent implements AuthenticatableContract, JWTSubject
     {
         return [];
     }
-
     /**
      * Attributes
      */
     public function setPasswordAttribute($password)
     {
         $this->attributes['password'] = Hash::make($password);
-    }
-
-    /**
-     * Relations
-     */
-    public function roles(){
-        return $this->belongsToMany(Role::class, null, 'user_ids', 'role_ids');
-    }
-
-    public function orders(){
-        return $this->hasMany(Order::class);
     }
 }

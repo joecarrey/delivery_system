@@ -46,6 +46,12 @@ return [
             'provider' => 'users',
             'hash' => false,
         ],
+
+        'courier' => [
+            'driver' => 'jwt',
+            'provider' => 'couriers',
+            'hash' => false,
+        ],
     ],
 
     /*
@@ -71,10 +77,10 @@ return [
             'model' => App\User::class,
         ],
 
-        // 'users' => [
-        //     'driver' => 'database',
-        //     'table' => 'users',
-        // ],
+        'couriers' => [
+            'driver' => 'eloquent',
+            'model' => App\Courier::class,
+        ],
     ],
 
     /*
@@ -95,6 +101,12 @@ return [
     'passwords' => [
         'users' => [
             'provider' => 'users',
+            'table' => 'password_resets',
+            'expire' => 60,
+            'throttle' => 60,
+        ],
+        'couriers' => [
+            'provider' => 'couriers',
             'table' => 'password_resets',
             'expire' => 60,
             'throttle' => 60,
