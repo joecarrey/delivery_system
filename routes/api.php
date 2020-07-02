@@ -29,8 +29,9 @@ Route::group(['namespace' => 'Api'], function(){
 		Route::post('/order', 'OrderController@store');
 
 		Route::group(['middleware' => 'admin', 'prefix' => 'admin'], function(){
-			Route::get('/orders', 'AdminController@get_orders');	
 			Route::get('/couriers', 'AdminController@get_couriers');
+			Route::get('/orders', 'AdminController@get_orders');	
+			Route::get('/order/{order_id}', 'OrderController@order_info');
 
 			Route::patch('/assign_order/{courier_id}/{order_id}', 'AdminController@assign_order');
 			Route::patch('/update_status/{order_id}', 'OrderController@update_status');		
@@ -39,6 +40,7 @@ Route::group(['namespace' => 'Api'], function(){
 	Route::group(['middleware' => 'auth:courier', 'prefix' => 'courier'], function(){
 		
 		Route::get('/orders', 'CourierController@get_orders');
+		Route::get('/order/{order_id}', 'OrderController@order_info');
 
 		Route::patch('/update_status/{order_id}', 'OrderController@update_status');		
 	});	

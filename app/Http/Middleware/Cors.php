@@ -3,9 +3,8 @@
 namespace App\Http\Middleware;
 
 use Closure;
-use Auth;
 
-class CheckAdmin
+class Cors
 {
     /**
      * Handle an incoming request.
@@ -16,10 +15,9 @@ class CheckAdmin
      */
     public function handle($request, Closure $next)
     {
-        $user = Auth::user()->roles->pluck('name');
-        if(!$user->contains('admin')) {
-            return response()->json(['error' => 'Forbidden'], 403);
-        }
-        return $next($request);
+        return $next($request)
+            ->header('Access-Control-Allow-Origin', "*")
+            ->header('Access-Control-Allow-Methods', "PUT,POST,DELETE,GET,OPTIONS")
+            ->header('Access-Control-Allow-Headers', "Accept, Authorization, Content-Type");
     }
 }

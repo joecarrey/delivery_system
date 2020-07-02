@@ -8,27 +8,31 @@ use Validator;
 use App\User;
 use App\Courier;
 use Auth;
-// use App\Role;
+use App\HelpTrait;
+use App\Role;
 
 class AuthController extends Controller
 {
-    public function login(Request $request)
+    use HelpTrait;
+    protected $creds;
+
+    public function __construct(Request $request)
     {
-    	$creds = $request->only(['email', 'password']);
-    	
-    	$validator = Validator::make($request->all(), [
-    		'email' => 'required|email',
-    		'password' => 'required|string|min:8',
-    	]);
-    	if($validator->fails()){
-    		return response()->json($validator->errors(), 401);
-    	}
+        $this->creds = $request->only(['email', 'password']);
+    }
+
+    public function login(Request $request)
+    {	  
+    	$valid = $this->validate_login($request);
+        if($valid)
+            return $valid;
 
     	$user = User::where('email', $request->email)->first();
-
-    	if(!$token = Auth::guard('api')->attempt($creds))
+    	if(!$user)
+    		return response()->json(['error' => 'User not found'], 400);
+    	if(!$token = Auth::guard('api')->attempt($this->creds))
     	{
-    		return response()->json(['error' => 'Unauthorized', 401]);
+    		return response()->json(['error' => 'Unauthorized'], 401);
     	}
 
     	$user['token'] = $token;
@@ -37,38 +41,33 @@ class AuthController extends Controller
 
     public function register(Request $request)
     {
-        $validator = Validator::make($request->all(), [
-    		'name' => 'required|string|max:255|min:3',
-    		'email' => 'required|email|max:255',
-    		'password' => 'required|string|min:8',
-    	]);
-    	if($validator->fails()){
-    		return response()->json($validator->errors(), 401);
-    	}
+        $valid = $this->validate_register($request);
+        if($valid)
+            return $valid;
 
-    	$user = User::create($request->all());
-    	$user->roles()->attach('5ef68a5128350000b6004994'); 
+        $user = User::create($request->all());
+        if(!$token = Auth::guard('api')->attempt($this->creds))
+        {
+            return response()->json(['error' => 'Unauthorized'], 401);
+        }
+        $user['token'] = $token;    
+    	$user->roles()->attach('5efdf41efc1d0000ea007949'); 
 
     	return response()->json($user, 201);
     }
 ///////////////////////////////////////////////////////////////////////////////////////
     public function login_courier(Request $request)
     {
-    	$creds = $request->only(['email', 'password']);
-    	
-    	$validator = Validator::make($request->all(), [
-    		'email' => 'required|email',
-    		'password' => 'required|string|min:8',
-    	]);
-    	if($validator->fails()){
-    		return response()->json($validator->errors(), 401);
-    	}
+    	$valid = $this->validate_login($request);
+        if($valid)
+            return $valid;
 
     	$courier = Courier::where('email', $request->email)->first();
-
-    	if(!$token = Auth::guard('courier')->attempt($creds))
+    	if(!$courier)
+    		return response()->json(['error' => 'User not found'], 400);
+    	if(!$token = Auth::guard('courier')->attempt($this->creds))
     	{
-    		return response()->json(['error' => 'Unauthorized', 401]);
+    		return response()->json(['error' => 'Unauthorized'], 401);
     	}
 
     	$courier['token'] = $token;
@@ -77,17 +76,16 @@ class AuthController extends Controller
 
     public function register_courier(Request $request)
     {
-        $validator = Validator::make($request->all(), [
-    		'name' => 'required|string|max:255|min:3',
-    		'email' => 'required|email|max:255',
-    		'password' => 'required|string|min:8',
-    	]);
-    	if($validator->fails()){
-    		return response()->json($validator->errors(), 401);
-    	}
+        $valid = $this->validate_register($request);
+        if($valid)
+            return $valid;
 
     	$courier = Courier::create($request->all()); 
-
+        if(!$token = Auth::guard('api')->attempt($this->creds))
+        {
+            return response()->json(['error' => 'Unauthorized'], 401);
+        }
+        $courier['token'] = $token;
     	return response()->json($courier, 201);
     }
 
