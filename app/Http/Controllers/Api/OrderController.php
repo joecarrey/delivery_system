@@ -8,7 +8,7 @@ use Validator;
 use App\Order;
 use App\User;
 use App\HelpTrait;
-use App\Events\NewOrderEvent;
+use App\Jobs\NewOrderJob;
 
 class OrderController extends Controller
 {
@@ -31,7 +31,7 @@ class OrderController extends Controller
     	$order->status = Order::STATUS_REQUESTED;
         $order->save();
 
-        event(new NewOrderEvent($order));
+        dispatch(new NewOrderJob($order));
         
     	return response()->json($order, 201);
     }
