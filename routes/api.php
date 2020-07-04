@@ -34,6 +34,7 @@ Route::group(['namespace' => 'Api'], function(){
 			Route::get('/order/{order_id}', 'OrderController@order_info');
 
 			Route::patch('/assign_order/{courier_id}/{order_id}', 'AdminController@assign_order');
+			Route::patch('/activate_courier/{courier_id}', 'AdminController@activate_courier');
 			Route::patch('/update_status/{order_id}', 'OrderController@update_status');		
 		});
 	});

@@ -45,7 +45,13 @@ class AuthController extends Controller
         if($valid)
             return $valid;
 
-        $user = User::create($request->all());
+        try {
+            $user = User::create($request->all());
+        } catch (\Exception $e) {
+            $res = ['code' => $e->getCode(), 'info' => $e->getMessage()];
+            return response()->json($res, 409);
+        }
+
         if(!$token = Auth::guard('api')->attempt($this->creds))
         {
             return response()->json(['error' => 'Unauthorized'], 401);
@@ -79,9 +85,20 @@ class AuthController extends Controller
         $valid = $this->validate_register($request);
         if($valid)
             return $valid;
+        
+        try { 
+            $courier = new Courier;
+            $courier->name = $request->name;
+            $courier->email = $request->email;
+            $courier->password = $request->password;
+            $courier->is_active = false;
+            $courier->save();            
+        } catch (\Exception $e) {
+            $res = ['code' => $e->getCode(), 'info' => $e->getMessage()];
+            return response()->json($res, 409);
+        } 
 
-    	$courier = Courier::create($request->all()); 
-        if(!$token = Auth::guard('api')->attempt($this->creds))
+        if(!$token = Auth::guard('courier')->attempt($this->creds))
         {
             return response()->json(['error' => 'Unauthorized'], 401);
         }

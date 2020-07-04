@@ -33,5 +33,13 @@ class AdminController extends Controller
     	$order->save();
 
     	return response()->json($order, 200);
+    }
+
+    public function activate_courier($courier_id)
+    {
+        $courier = Courier::findOrFail($courier_id);
+        $courier->is_active = true;
+        $courier->save();
+        return response()->json(['message' => 'Courier ' . $courier->name . ' is activated'], 200);
     }   
 }
