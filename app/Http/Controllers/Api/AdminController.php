@@ -41,5 +41,12 @@ class AdminController extends Controller
         $courier->is_active = true;
         $courier->save();
         return response()->json(['message' => 'Courier ' . $courier->name . ' is activated'], 200);
+    }
+
+    public function delete_courier($courier_id)
+    {
+        $courier = Courier::findOrFail($courier_id);
+        $courier->delete();
+        return response()->json(['message' => 'Courier ' . $courier->name . ' has been deleted'], 200);
     }   
 }

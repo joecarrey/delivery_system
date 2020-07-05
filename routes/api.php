@@ -19,9 +19,6 @@ Route::group(['namespace' => 'Api'], function(){
 	Route::post('/login', 'AuthController@login');	// login
 	Route::post('/login_courier', 'AuthController@login_courier'); // register
 
-	Route::get('/email/resend', 'VerificationController@resend')->name('verification.resend');
-	Route::get('/email/verify/{id}/{hash}', 'VerificationController@verify')->name('verification.verify');
-
 	Route::group(['middleware' => 'auth:api'], function(){
 		
 		Route::get('/logout', 'AuthController@logout');
@@ -35,7 +32,9 @@ Route::group(['namespace' => 'Api'], function(){
 
 			Route::patch('/assign_order/{courier_id}/{order_id}', 'AdminController@assign_order');
 			Route::patch('/activate_courier/{courier_id}', 'AdminController@activate_courier');
-			Route::patch('/update_status/{order_id}', 'OrderController@update_status');		
+			Route::patch('/update_status/{order_id}', 'OrderController@update_status');
+
+			Route::delete('/del_courier/{courier_id}', 'AdminController@delete_courier');		
 		});
 	});
 	Route::group(['middleware' => 'auth:courier', 'prefix' => 'courier'], function(){

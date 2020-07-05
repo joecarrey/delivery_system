@@ -1,0 +1,35 @@
+1. Clone the project and install composer (.env is included)
+2. Make symlink of storage in public (php artisan storage:link)
+3. List of packages are in composer.json
+4. Create mongodb database with name: 'delivery'
+5. Import collections from folder 'Collections_delivery' (json files)
+5. Run Apache Server and mongod.exe (MongoDB\Server\4.2\bin)
+6. Open Postman and import delivery.postman_collection.json from Postman folder
+7. You can check the whole API on postman
+
+
+This project includes only api, and start of frontend on vue.js in folder delivery_vue.
+
+Routes:
+
+---------+------------------------------------------------+---------------------------------------------------+-------------------+--------------------------
+Method   | URI                                            | Action                                            | Middleware        | Description        
+---------+------------------------------------------------+---------------------------------------------------+-------------------+--------------------------
+PATCH    | api/admin/activate_courier/{courier_id}        | \Controllers\Api\AdminController@activate_courier | api,auth:api,admin| activetes courier ptofile
+PATCH    | api/admin/assign_order/{courier_id}/{order_id} | \Controllers\Api\AdminController@assign_order     | api,auth:api,admin|	assign order to courier
+GET|HEAD | api/admin/couriers                             | \Controllers\Api\AdminController@get_couriers     | api,auth:api,admin| list of couriers
+DELETE   | api/admin/del_courier/{courier_id}             | \Controllers\Api\AdminController@delete_courier   | api,auth:api,admin| delete courier profile 
+GET|HEAD | api/admin/order/{order_id}                     | \Controllers\Api\OrderController@order_info       | api,auth:api,admin| show order by _id
+GET|HEAD | api/admin/orders                               | \Controllers\Api\AdminController@get_orders       | api,auth:api,admin| list of orders
+PATCH    | api/admin/update_status/{order_id}             | \Controllers\Api\OrderController@update_status    | api,auth:api,admin| update order status
+GET|HEAD | api/courier/order/{order_id}                   | \Controllers\Api\OrderController@order_info       | api,auth:courier  | show order by _id
+GET|HEAD | api/courier/orders                             | \Controllers\Api\CourierController@get_orders     | api,auth:courier  | show orders of courier
+PATCH    | api/courier/update_status/{order_id}           | \Controllers\Api\OrderController@update_status    | api,auth:courier  | update order status
+POST     | api/login                                      | \Controllers\Api\AuthController@login             | api               | login (users, admin)
+POST     | api/register                                   | \Controllers\Api\AuthController@register          | api               | register (users, admin)
+POST     | api/login_courier                              | \Controllers\Api\AuthController@login_courier     | api               | login (courier)
+POST     | api/register_courier                           | \Controllers\Api\AuthController@register_courier  | api               | register (courier)
+GET|HEAD | api/logout                                     | \Controllers\Api\AuthController@logout            | api,auth:api      | logout
+POST     | api/order                                      | \Controllers\Api\OrderController@store            | api,auth:api      | store order
+GET|HEAD | file/{filename}/{folder}                       | \Controllers\FileController@download_file         | web             | link to download order file
+
