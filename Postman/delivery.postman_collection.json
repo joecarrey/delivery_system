@@ -1,0 +1,670 @@
+{
+	"info": {
+		"_postman_id": "db9814ed-412d-473a-9249-3b7fb71ebbe9",
+		"name": "delivery",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "admin",
+			"item": [
+				{
+					"name": "activate_courier",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9kZWxpdmVyeS50ZXN0XC9hcGlcL2xvZ2luIiwiaWF0IjoxNTkzODIyMDA1LCJleHAiOjE1OTM5MDg0MDUsIm5iZiI6MTU5MzgyMjAwNSwianRpIjoiWEtGTDVjOGJsMmpLSHpxeSIsInN1YiI6IjVlZmRmNGYwZmMxZDAwMDBlYTAwNzk0YSIsInBydiI6Ijg3ZTBhZjFlZjlmZDE1ODEyZmRlYzk3MTUzYTE0ZTBiMDQ3NTQ2YWEifQ.IuTPQquN2OzbxSistKgQQK7xRpyZpctpEfV_yJ5nQcs",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "delivery.test/api/admin/activate_courier/5effc963b2720000d5003a2c",
+							"host": [
+								"delivery",
+								"test"
+							],
+							"path": [
+								"api",
+								"admin",
+								"activate_courier",
+								"5effc963b2720000d5003a2c"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get_orders",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9kZWxpdmVyeS50ZXN0XC9hcGlcL2xvZ2luIiwiaWF0IjoxNTkzODIyNTQzLCJleHAiOjE1OTM5MDg5NDMsIm5iZiI6MTU5MzgyMjU0MywianRpIjoiQjVjUVNWQVF2ZTEwQ3plWSIsInN1YiI6IjVlZmRmNGYwZmMxZDAwMDBlYTAwNzk0YSIsInBydiI6Ijg3ZTBhZjFlZjlmZDE1ODEyZmRlYzk3MTUzYTE0ZTBiMDQ3NTQ2YWEifQ.MOn39a68slke1qHfvcpoutwN_j8TSLKaFSHt8EpLv7U",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "delivery.test/api/admin/orders",
+							"host": [
+								"delivery",
+								"test"
+							],
+							"path": [
+								"api",
+								"admin",
+								"orders"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get_couriers",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9kZWxpdmVyeS50ZXN0XC9hcGlcL2xvZ2luIiwiaWF0IjoxNTkzODIyNTQzLCJleHAiOjE1OTM5MDg5NDMsIm5iZiI6MTU5MzgyMjU0MywianRpIjoiQjVjUVNWQVF2ZTEwQ3plWSIsInN1YiI6IjVlZmRmNGYwZmMxZDAwMDBlYTAwNzk0YSIsInBydiI6Ijg3ZTBhZjFlZjlmZDE1ODEyZmRlYzk3MTUzYTE0ZTBiMDQ3NTQ2YWEifQ.MOn39a68slke1qHfvcpoutwN_j8TSLKaFSHt8EpLv7U",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "delivery.test/api/admin/couriers",
+							"host": [
+								"delivery",
+								"test"
+							],
+							"path": [
+								"api",
+								"admin",
+								"couriers"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "assign_order",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9kZWxpdmVyeS50ZXN0XC9hcGlcL2xvZ2luIiwiaWF0IjoxNTkzMzEyODI1LCJleHAiOjE1OTMzOTkyMjUsIm5iZiI6MTU5MzMxMjgyNSwianRpIjoibUlNOXBXaWtwVE5qdWlHdiIsInN1YiI6IjVlZjgwMDc4MmQyNTAwMDBiOTAwMWM1NiIsInBydiI6Ijg3ZTBhZjFlZjlmZDE1ODEyZmRlYzk3MTUzYTE0ZTBiMDQ3NTQ2YWEifQ.ef6SwlVtUq5P92lu6h7dA1HD6n8PyRbR0G24WI1zMZU",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "delivery.test/api/admin/assign_order/5ef7d946540700000f004263/5ef7fc952d250000b9001c54",
+							"host": [
+								"delivery",
+								"test"
+							],
+							"path": [
+								"api",
+								"admin",
+								"assign_order",
+								"5ef7d946540700000f004263",
+								"5ef7fc952d250000b9001c54"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update_order_status",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9kZWxpdmVyeS50ZXN0XC9hcGlcL2xvZ2luIiwiaWF0IjoxNTkzODIyNTQzLCJleHAiOjE1OTM5MDg5NDMsIm5iZiI6MTU5MzgyMjU0MywianRpIjoiQjVjUVNWQVF2ZTEwQ3plWSIsInN1YiI6IjVlZmRmNGYwZmMxZDAwMDBlYTAwNzk0YSIsInBydiI6Ijg3ZTBhZjFlZjlmZDE1ODEyZmRlYzk3MTUzYTE0ZTBiMDQ3NTQ2YWEifQ.MOn39a68slke1qHfvcpoutwN_j8TSLKaFSHt8EpLv7U",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "status",
+									"value": "3",
+									"type": "text"
+								},
+								{
+									"key": "_method",
+									"value": "PATCH",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "delivery.test/api/admin/update_status/5efe23bc130100003e0037b2",
+							"host": [
+								"delivery",
+								"test"
+							],
+							"path": [
+								"api",
+								"admin",
+								"update_status",
+								"5efe23bc130100003e0037b2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "order_info",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9kZWxpdmVyeS50ZXN0XC9hcGlcL2xvZ2luIiwiaWF0IjoxNTkzODIyNTQzLCJleHAiOjE1OTM5MDg5NDMsIm5iZiI6MTU5MzgyMjU0MywianRpIjoiQjVjUVNWQVF2ZTEwQ3plWSIsInN1YiI6IjVlZmRmNGYwZmMxZDAwMDBlYTAwNzk0YSIsInBydiI6Ijg3ZTBhZjFlZjlmZDE1ODEyZmRlYzk3MTUzYTE0ZTBiMDQ3NTQ2YWEifQ.MOn39a68slke1qHfvcpoutwN_j8TSLKaFSHt8EpLv7U",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "delivery.test/api/admin/order/5efe2414130100003e0037b3",
+							"host": [
+								"delivery",
+								"test"
+							],
+							"path": [
+								"api",
+								"admin",
+								"order",
+								"5efe2414130100003e0037b3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete_courier",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9kZWxpdmVyeS50ZXN0XC9hcGlcL2xvZ2luIiwiaWF0IjoxNTkzOTAwNzE2LCJleHAiOjE1OTM5ODcxMTYsIm5iZiI6MTU5MzkwMDcxNiwianRpIjoiemZkWDhQR3BkUlJiMVg1MCIsInN1YiI6IjVlZmRmNGYwZmMxZDAwMDBlYTAwNzk0YSIsInBydiI6Ijg3ZTBhZjFlZjlmZDE1ODEyZmRlYzk3MTUzYTE0ZTBiMDQ3NTQ2YWEifQ.-r2TBPJr4f9YNysx4c0vHG62ND17YNIl0aIZ_CdtswE",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "delivery.test/api/admin/del_courier/5effc7efb2720000d5003a2b",
+							"host": [
+								"delivery",
+								"test"
+							],
+							"path": [
+								"api",
+								"admin",
+								"del_courier",
+								"5effc7efb2720000d5003a2b"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "courier",
+			"item": [
+				{
+					"name": "register_courier",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "Courier # 4",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "test_4@test.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "123123123",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "delivery.test/api/register_courier",
+							"host": [
+								"delivery",
+								"test"
+							],
+							"path": [
+								"api",
+								"register_courier"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "login_courier",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "email",
+									"value": "test@test.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "123123123",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "delivery.test/api/login_courier",
+							"host": [
+								"delivery",
+								"test"
+							],
+							"path": [
+								"api",
+								"login_courier"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get_courier_orders",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9kZWxpdmVyeS50ZXN0XC9hcGlcL2xvZ2luX2NvdXJpZXIiLCJpYXQiOjE1OTMzMDUzMzEsImV4cCI6MTU5MzM5MTczMSwibmJmIjoxNTkzMzA1MzMxLCJqdGkiOiJtcWNNY0N6T294cnpyTmtCIiwic3ViIjoiNWVmN2Q5NDY1NDA3MDAwMDBmMDA0MjYzIiwicHJ2IjoiY2M2NTVhYzk2YzgxYTQwZjViNTA3MGFlMWQ1OGUxZTcyM2ZmZDdlMSJ9.iChEyLFStHSNECX_bFHpiAoKZtZbm89Tw7h6MGlBOMU",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "delivery.test/api/courier/orders",
+							"host": [
+								"delivery",
+								"test"
+							],
+							"path": [
+								"api",
+								"courier",
+								"orders"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update_order_status (for courier)",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9kZWxpdmVyeS50ZXN0XC9hcGlcL2xvZ2luX2NvdXJpZXIiLCJpYXQiOjE1OTM4MjI5NDAsImV4cCI6MTU5MzkwOTM0MCwibmJmIjoxNTkzODIyOTQwLCJqdGkiOiJabUw4SnJYREpoZkNxUHhsIiwic3ViIjoiNWVmZmM3OTJiMjcyMDAwMGQ1MDAzYTI4IiwicHJ2IjoiY2M2NTVhYzk2YzgxYTQwZjViNTA3MGFlMWQ1OGUxZTcyM2ZmZDdlMSJ9.KB3e1mRgOm7ZGZdpufKFg4IWJaUBpW2redk0N21JmSI",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "status",
+									"value": "3",
+									"type": "text"
+								},
+								{
+									"key": "_method",
+									"value": "PATCH",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "delivery.test/api/courier/update_status/5efe2414130100003e0037b3",
+							"host": [
+								"delivery",
+								"test"
+							],
+							"path": [
+								"api",
+								"courier",
+								"update_status",
+								"5efe2414130100003e0037b3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "order_info (courier)",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9kZWxpdmVyeS50ZXN0XC9hcGlcL2xvZ2luX2NvdXJpZXIiLCJpYXQiOjE1OTM4MjI5NDAsImV4cCI6MTU5MzkwOTM0MCwibmJmIjoxNTkzODIyOTQwLCJqdGkiOiJabUw4SnJYREpoZkNxUHhsIiwic3ViIjoiNWVmZmM3OTJiMjcyMDAwMGQ1MDAzYTI4IiwicHJ2IjoiY2M2NTVhYzk2YzgxYTQwZjViNTA3MGFlMWQ1OGUxZTcyM2ZmZDdlMSJ9.KB3e1mRgOm7ZGZdpufKFg4IWJaUBpW2redk0N21JmSI",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "delivery.test/api/courier/order/5efe2414130100003e0037b3",
+							"host": [
+								"delivery",
+								"test"
+							],
+							"path": [
+								"api",
+								"courier",
+								"order",
+								"5efe2414130100003e0037b3"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "register",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "name",
+							"value": "John Doe",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "test@test.com",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "123123123",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "delivery.test/api/register",
+					"host": [
+						"delivery",
+						"test"
+					],
+					"path": [
+						"api",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "login",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "email",
+							"value": "joecarrey90@gmail.com",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "123123123",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "delivery.test/api/login",
+					"host": [
+						"delivery",
+						"test"
+					],
+					"path": [
+						"api",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "logout",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "delivery.test/api/logout",
+					"host": [
+						"delivery",
+						"test"
+					],
+					"path": [
+						"api",
+						"logout"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "store_order",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9kZWxpdmVyeS50ZXN0XC9hcGlcL3JlZ2lzdGVyIiwiaWF0IjoxNTkzNzAxNzYwLCJleHAiOjE1OTM3ODgxNjAsIm5iZiI6MTU5MzcwMTc2MCwianRpIjoiSXRlZkRNZjluRFprV1lleCIsInN1YiI6IjVlZmRmNTgwZmMxZDAwMDBlYTAwNzk0YyIsInBydiI6Ijg3ZTBhZjFlZjlmZDE1ODEyZmRlYzk3MTUzYTE0ZTBiMDQ3NTQ2YWEifQ.xXbhgLyi_16yoA3IGzN4IQ_Ks_z-LSYPO7Ln3AfeLLI",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "title",
+							"value": "Order 1",
+							"type": "text"
+						},
+						{
+							"key": "text",
+							"value": "Text for Order",
+							"type": "text"
+						},
+						{
+							"key": "file",
+							"type": "file",
+							"src": "/E:/_E/CV_Akmal_Karimov.pdf"
+						}
+					]
+				},
+				"url": {
+					"raw": "delivery.test/api/order",
+					"host": [
+						"delivery",
+						"test"
+					],
+					"path": [
+						"api",
+						"order"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}

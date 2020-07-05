@@ -1,0 +1,7 @@
+{"_id":{"$oid":"5efd71118b610000950040e2"},"migration":"2014_10_12_000000_create_users_table","batch":1}
+{"_id":{"$oid":"5efd71118b610000950040e3"},"migration":"2014_10_12_100000_create_password_resets_table","batch":1}
+{"_id":{"$oid":"5efd71128b610000950040e4"},"migration":"2019_08_19_000000_create_failed_jobs_table","batch":1}
+{"_id":{"$oid":"5efd71128b610000950040e5"},"migration":"2020_06_26_184323_create_roles_table","batch":1}
+{"_id":{"$oid":"5efd71128b610000950040e6"},"migration":"2020_06_27_210403_create_orders_table","batch":1}
+{"_id":{"$oid":"5efd71128b610000950040e7"},"migration":"2020_06_27_224807_create_couriers_table","batch":1}
+{"_id":{"$oid":"5efe77cf33310000e2002722"},"migration":"2020_07_03_000706_create_jobs_table","batch":2}

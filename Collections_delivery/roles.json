@@ -1,0 +1,2 @@
+{"_id":{"$oid":"5efdf41efc1d0000ea007948"},"name":"admin","updated_at":{"$date":"2020-07-02T14:50:06.786Z"},"created_at":{"$date":"2020-07-02T14:50:06.786Z"},"user_ids":["5efdf4f0fc1d0000ea00794a"]}
+{"_id":{"$oid":"5efdf41efc1d0000ea007949"},"name":"user","updated_at":{"$date":"2020-07-02T14:50:06.791Z"},"created_at":{"$date":"2020-07-02T14:50:06.791Z"},"user_ids":["5efdf555fc1d0000ea00794b","5efdf580fc1d0000ea00794c","5efea2c9126e00009d002483","5efeab70126e00009d002485"]}
