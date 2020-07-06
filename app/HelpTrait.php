@@ -2,6 +2,7 @@
 
 namespace App;
 use Validator;
+use App\User;
 trait HelpTrait
 {
     public function validate_login($request)
@@ -61,5 +62,26 @@ trait HelpTrait
         $path = $file->storeAs('public/' . $folder, $fileNameToStore);
 
         return $fileNameToStore; 
+    }
+
+    public function find_admin()
+    {
+        // $admin = User::whereHas(           // whereHas DOES NOT work
+        //     'roles', function($q){
+        //         $q->where('name', 'admin');
+        //     }
+        // )->get();
+        $admin = User::all()->map(function ($doc) {
+                $x = $doc->roles;
+                foreach ($x as $role) {
+                    if($role->name == 'admin')
+                        return $doc;
+                }
+            });
+        foreach ($admin as $a){
+            if($a != null)
+                $admin = $a;
+        }
+        return $admin;
     }
 }

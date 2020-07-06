@@ -51,7 +51,7 @@ class AuthController extends Controller
             $res = ['code' => $e->getCode(), 'info' => $e->getMessage()];
             return response()->json($res, 409);
         }
-
+        
         if(!$token = Auth::guard('api')->attempt($this->creds))
         {
             return response()->json(['error' => 'Unauthorized'], 401);

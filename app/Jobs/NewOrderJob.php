@@ -8,11 +8,12 @@ use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 use App\User;
+use App\HelpTrait;
 use Mail;
 
 class NewOrderJob implements ShouldQueue
 {
-    use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
+    use Dispatchable, InteractsWithQueue, Queueable, SerializesModels, HelpTrait;
 
     private $order;
     /**
@@ -33,17 +34,7 @@ class NewOrderJob implements ShouldQueue
     public function handle()
     {
         // sleep(10);
-        // whereHas DOES NOT work
-        $admin = User::all()->map(function ($doc) {
-                $x = $doc->roles;
-                $role = $doc->roles;
-                if($role[0]->name == 'admin')
-                    return $doc;
-            });
-        foreach ($admin as $a){
-            if($a != null)
-                $admin = $a;
-        }
+        $admin = $this->find_admin();
         $temp = json_decode($this->order, true);
         $temp['email'] = $admin->email;
 

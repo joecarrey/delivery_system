@@ -5,21 +5,82 @@ namespace Tests\Feature;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
-use Faker\Generator as Faker;
 
 class AuthTest extends TestCase
-{
-    /** @test */
+{   
+    use WithFaker;
+
     public function user_can_register()
     {
-
         $this->withoutExceptionHandling();
         $response = $this->post('/api/register', [
-            'name' => 'Testing name',
-            'email' => 'testing_01@email.com',
+            'name' => $this->faker->name,
+            'email' => $this->faker->email,
             'password' => '123123123',
         ]);
 
-        $response->assertStatus(201);
+        $res = $response->getOriginalContent(); 
+
+        $response->assertStatus(201)->assertJsonFragment([
+            'token' => $res->token,
+        ]);
+    }
+
+    public function courier_can_register()
+    {
+        $this->withoutExceptionHandling();
+        $response = $this->post('/api/register_courier', [
+            'name' => $this->faker->name,
+            'email' => $this->faker->email,
+            'password' => '123123123',
+        ]);
+
+        $res = $response->getOriginalContent(); 
+
+        $response->assertStatus(201)->assertJsonFragment([
+            'token' => $res->token,
+        ]);
+    }
+
+    public function user_can_login()
+    {
+        $this->withoutExceptionHandling();
+        $response = $this->post('/api/register', [
+            'name' => $name = $this->faker->name,
+            'email' => $email = $this->faker->email,
+            'password' => $password = '123123123',
+        ]);
+
+        $response = $this->post('/api/login', [
+            'email' => $email,
+            'password' => $password,
+        ]);
+
+        $res = $response->getOriginalContent(); 
+
+        $response->assertStatus(200)->assertJsonFragment([
+            'token' => $res->token,
+        ]);
+    }
+
+    public function courier_can_login()
+    {
+        $this->withoutExceptionHandling();
+        $response = $this->post('/api/register_courier', [
+            'name' => $name = $this->faker->name,
+            'email' => $email = $this->faker->email,
+            'password' => $password = '123123123',
+        ]);
+
+        $response = $this->post('/api/login_courier', [
+            'email' => $email,
+            'password' => $password,
+        ]);
+
+        $res = $response->getOriginalContent(); 
+
+        $response->assertStatus(200)->assertJsonFragment([
+            'token' => $res->token,
+        ]);
     }
 }
