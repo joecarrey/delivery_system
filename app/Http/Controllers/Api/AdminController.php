@@ -47,6 +47,8 @@ class AdminController extends Controller
     {
         $courier = Courier::findOrFail($courier_id);
         $courier->delete();
+        if (!empty(get_object_vars($courier->orders)))           
+            $courier->orders[0]->unset('courier_id');
         return response()->json(['message' => 'Courier ' . $courier->name . ' has been deleted'], 200);
     }   
 }
