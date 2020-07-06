@@ -124,6 +124,7 @@ class AdminTest extends TestCase
         $response->assertStatus(200);
     }
 
+    /** @test */
     public function admin_can_delete_courier_profile()
     {
         $this->withoutExceptionHandling();

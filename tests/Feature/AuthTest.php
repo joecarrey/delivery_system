@@ -10,6 +10,7 @@ class AuthTest extends TestCase
 {   
     use WithFaker;
 
+    /** @test */
     public function user_can_register()
     {
         $this->withoutExceptionHandling();
@@ -26,6 +27,7 @@ class AuthTest extends TestCase
         ]);
     }
 
+    /** @test */
     public function courier_can_register()
     {
         $this->withoutExceptionHandling();
@@ -42,6 +44,7 @@ class AuthTest extends TestCase
         ]);
     }
 
+    /** @test */
     public function user_can_login()
     {
         $this->withoutExceptionHandling();
@@ -63,6 +66,7 @@ class AuthTest extends TestCase
         ]);
     }
 
+    /** @test */
     public function courier_can_login()
     {
         $this->withoutExceptionHandling();

@@ -1,11 +1,12 @@
 1. Clone the project and install composer (.env is included)
-2. Make symlink of storage in public (php artisan storage:link)
+2. Make symlink of storage in public ($ php artisan storage:link)
 3. List of packages are in composer.json
 4. Create mongodb database with name: 'delivery'
 5. Import collections from folder 'Collections_delivery' (json files)
 5. Run Apache Server and mongod.exe (MongoDB\Server\4.2\bin)
 6. Open Postman and import delivery.postman_collection.json from Postman folder
 7. You can check the whole API on postman
+8. There are some tests (run '$ vendor/bin/phpunit.bat' to test)
 
 
 This project includes only api, and start of frontend on vue.js in folder delivery_vue.
